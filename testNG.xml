@@ -1,0 +1,43 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="test1" verbose="1">
+    <test name="Test1" preserve-order="true" enabled="true">
+        <classes>
+            <class name="T01SignInSuccess"></class>
+        </classes>
+    </test>
+    <test name="Test2" preserve-order="true" enabled="true">
+        <classes>
+            <class name="T02SignInFail"></class>
+        </classes>
+    </test>
+    <test name="Test3" preserve-order="true" enabled="true">
+        <classes>
+            <class name="T03LogInSuccess"></class>
+        </classes>
+    </test>
+    <test name="Test4" preserve-order="true" enabled="true">
+        <classes>
+            <class name="T04LogInFail"></class>
+        </classes>
+    </test>
+    <test name="Test5" preserve-order="true" enabled="true">
+        <classes>
+            <class name="T05GetLoginInfo"></class>
+        </classes>
+    </test>
+    <test name="Test6" preserve-order="true" enabled="true">
+        <classes>
+            <class name="T06ContactInfoUpdate"></class>
+        </classes>
+    </test>
+    <test name="Test7" preserve-order="true" enabled="true">
+        <classes>
+            <class name="T07OpenNewAccount"></class>
+        </classes>
+    </test>
+    <test name="Test8" preserve-order="true" enabled="true">
+        <classes>
+            <class name="T08LoanRequest"></class>
+        </classes>
+    </test>
+</suite>
