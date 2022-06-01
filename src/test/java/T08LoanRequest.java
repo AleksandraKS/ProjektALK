@@ -33,17 +33,18 @@ public class T08LoanRequest {
     public void requestLoanTest() throws IOException, CsvValidationException, InterruptedException {
         startPage = new StartPage(driver).openPage();
         homePage = startPage.logInSuccess();
+        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div/div")).isDisplayed(),"Logowanie do strony nie powiodło się.");
         requestLoanPage = homePage.requestLoanClick();
         requestLoanPage.fillLoanAmount();
         requestLoanPage.fillDownPaymentAmount();
         requestLoanPage.chooseAccountForLoan();
         requestLoanPage.clickApplyNowBtn();
-        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div/div/div/p[1]")).getText().contains("Congratulations, your loan has been approved."));
+        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div/div/div/p[1]")).getText().contains("Congratulations, your loan has been approved."),"Złożenie wniosku o pożyczkę zakończyło się niepowodzeniem");
         requestLoanPage.getNewAccountId();
         requestLoanPage.clickAccountOverviewBtn();
         requestLoanPage.findNewAccountClick();
         Thread.sleep(1000);
-        Assert.assertTrue(driver.findElement(By.id("accountType")).getText().contains("LOAN"));
+        Assert.assertTrue(driver.findElement(By.id("accountType")).getText().contains("LOAN"),"Odnalezione konto ma błędny typ");
     }
 
     @AfterClass

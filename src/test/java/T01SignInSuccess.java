@@ -31,15 +31,14 @@ public class T01SignInSuccess {
     }
 
     @Test(description = "Test poprawnej rejestracji")
-    public void registerTest() throws IOException, CsvValidationException {
+    public void registerTest() throws IOException, CsvValidationException, Error{
         startPage = new StartPage(driver).openPage();
         registrationPage = startPage.clickRegisterButton();
         Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/form/table")).isDisplayed());
         registrationPage = registrationPage.fillRegistrationForm();
         String userNameProvided = registrationPage.getUserNameProvided();
         landingPage = registrationPage.clickRegistrationButton();
-        Assert.assertEquals(landingPage.getWelcomeText(), "Welcome " + userNameProvided);
-
+        Assert.assertEquals(landingPage.getWelcomeText(), "Welcome " + userNameProvided, "Rejestracja zakończyła się niepowodzeniem");
     }
 
     @AfterClass

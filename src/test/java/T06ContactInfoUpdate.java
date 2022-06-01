@@ -33,14 +33,15 @@ public class T06ContactInfoUpdate {
     public void updateContactInfoTest() throws IOException, CsvValidationException, InterruptedException {
         startPage = new StartPage(driver).openPage();
         homePage = startPage.logInSuccess();
+        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div/div")).isDisplayed(),"Logowanie do strony nie powiodło się.");
         contactInfoPage = homePage.contactInfoClick();
         contactInfoPage.changeData();
         contactInfoPage.clickUpdateInfo();
-        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div/div/p")).getText().contains("Your updated address and phone number have been added to the system."));
+        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div/div/p")).getText().contains("Your updated address and phone number have been added to the system."), "Dane nie zostały zaktualizowane");
         homePage.contactInfoClick();
         Thread.sleep(1000);
-        Assert.assertEquals(contactInfoPage.getFirstNameNew(), contactInfoPage.newName);
-        Assert.assertEquals(contactInfoPage.getCityNew(), contactInfoPage.newCity);
+        Assert.assertEquals(contactInfoPage.getFirstNameNew(), contactInfoPage.newName, "Imię nie zostało poprawnie zmienione");
+        Assert.assertEquals(contactInfoPage.getCityNew(), contactInfoPage.newCity, "Miasto nie zostało poprawnie zmienione");
 
     }
 

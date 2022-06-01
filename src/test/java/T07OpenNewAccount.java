@@ -35,11 +35,12 @@ public class T07OpenNewAccount {
     public void openNewAccountAndTransferFundsTest() throws IOException, CsvValidationException, InterruptedException {
         startPage = new StartPage(driver).openPage();
         homePage = startPage.logInSuccess();
+        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div/div")).isDisplayed(),"Logowanie do strony nie powiodło się.");
         openAccountPage = homePage.openNewAccountClick();
         openAccountPage.chooseAccountType();
         openAccountPage.chooseAccountForTransfer();
         openAccountPage.openAccountBtn();
-        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div/div/p[1]")).getText().contains("Congratulations, your account is now open."));
+        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div/div/p[1]")).getText().contains("Congratulations, your account is now open."), "Nie udało się założyć nowego konta");
         transferFundsPage = homePage.transferFundsClick();
         Thread.sleep(1000);
         transferFundsPage.amountInput();
@@ -47,7 +48,7 @@ public class T07OpenNewAccount {
         transferFundsPage.chooseAccountTo();
         transferFundsPage.clickTransferBtn();
         Thread.sleep(1000);
-        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div/div/h1")).getText().contains("Transfer Complete!"));
+        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div/div/h1")).getText().contains("Transfer Complete!"),"Transfer nie powiódł się");
     }
 
     @AfterClass

@@ -4,6 +4,7 @@ import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -50,7 +51,12 @@ public class StartPage {
             driver.findElement(loginButton).click();
             break;
         }
-        return new HomePage(driver);
+        WebElement element = driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/p"));
+        if (element != null) {
+            System.out.println(" Wewnętrzny błąd na stronie!  Nie można zalogować się poprawnie");
+        }
+
+    return new HomePage(driver);
     }
 
     public StartPage logInFailed() {

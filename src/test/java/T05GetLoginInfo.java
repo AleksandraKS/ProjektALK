@@ -34,7 +34,7 @@ public class T05GetLoginInfo {
         Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/form/table")).isDisplayed());
         loginInfoPage.fillLoginInfo();
         Thread.sleep(1000);
-        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"rightPanel\"]/p[1]")).getText().contains("Your login information was located successfully. You are now logged in."));
+        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"rightPanel\"]/p[1]")).getText().contains("Your login information was located successfully. You are now logged in."), "Dane Użytkownika nie zostały odnalezione");
     }
 
     @AfterClass
