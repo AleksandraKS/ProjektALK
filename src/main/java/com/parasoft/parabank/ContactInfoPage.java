@@ -26,7 +26,7 @@ public class ContactInfoPage {
     }
 
     public void clickUpdateInfo() {
-        driver.findElement(By.cssSelector("input.button")).click();
+        driver.findElement(By.cssSelector("input.button")).submit();
     }
 
     public String getFirstNameNew() {

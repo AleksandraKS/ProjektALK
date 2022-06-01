@@ -39,8 +39,8 @@ public class T06ContactInfoUpdate {
         contactInfoPage.clickUpdateInfo();
         Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div/div/p")).getText().contains("Your updated address and phone number have been added to the system."), "Dane nie zostały zaktualizowane");
         homePage.contactInfoClick();
-        Thread.sleep(1000);
-        Assert.assertEquals(contactInfoPage.getFirstNameNew(), contactInfoPage.newName, "Imię nie zostało poprawnie zmienione");
+        Thread.sleep(2000);
+        Assert.assertEquals(contactInfoPage.getFirstNameNew(), contactInfoPage.newName, "Imię nie zostało poprawnie zapisane");
         Assert.assertEquals(contactInfoPage.getCityNew(), contactInfoPage.newCity, "Miasto nie zostało poprawnie zmienione");
 
     }
