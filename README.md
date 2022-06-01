@@ -9,7 +9,6 @@ Celem projektu jest przetestowanie rejestracji i logowania Użytkownika do stron
 W tym celu opracowano następujące przypadki testowe:
 
 TC01: Poprawna rejestracja Użytkownika dla podanych danych. 
-
 TC02: Niepoprawna rejestracja Użytkownika w celu sprawdzenia wymagalności pól formularza do rejestracji. 
 TC03: Poprawne logowanie Użytkownika po udanej rejestracji. 
 TC04: Niepoprawne logowanie Użytkownika w celu sprawdzenia wymagalności pól do logowania. 
