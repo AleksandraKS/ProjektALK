@@ -22,7 +22,7 @@ public class RegistrationPage {
     private final By username = By.id("customer.username");
     private final By password = By.id("customer.password");
     private final By confirm = By.id("repeatedPassword");
-    private final By signInButton = By.xpath("/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[13]/td[2]/input");
+    private final By signInButton = By.cssSelector("[value='Register']");
     String CsvPath = "data/registrationData.csv";
     String[] csvCell;
     private CSVReader csvReader;
@@ -32,7 +32,6 @@ public class RegistrationPage {
         this.driver = driver;
     }
 
-    //dokończyć pobieranie danych z pliku do tej metody
     public RegistrationPage fillRegistrationForm() throws IOException, CsvValidationException {
         csvReader = new CSVReader(new FileReader(CsvPath));
         while ((csvCell = csvReader.readNext()) != null) {
@@ -74,7 +73,7 @@ public class RegistrationPage {
     }
 
     public LandingPage clickRegistrationButton() {
-        driver.findElement(signInButton).click();
+        driver.findElement(signInButton).submit();
         return new LandingPage(driver);
     }
 

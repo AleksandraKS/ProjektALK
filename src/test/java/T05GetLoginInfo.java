@@ -28,13 +28,11 @@ public class T05GetLoginInfo {
     }
 
     @Test(description = "Test odzyskania danych logowania")
-    public void loginInfoTest() throws IOException, CsvValidationException, InterruptedException {
+    public void loginInfoTest() throws IOException, CsvValidationException {
         startPage = new StartPage(driver).openPage();
         loginInfoPage = startPage.clickLoginInfo();
-        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/form/table")).isDisplayed());
         loginInfoPage.fillLoginInfo();
-        Thread.sleep(1000);
-        Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"rightPanel\"]/p[1]")).getText().contains("Your login information was located successfully. You are now logged in."), "Dane Użytkownika nie zostały odnalezione");
+        Assert.assertTrue(driver.findElement(By.cssSelector("[class='title']")).getText().contains("Customer Lookup"), "Dane Użytkownika nie zostały odnalezione");
     }
 
     @AfterClass

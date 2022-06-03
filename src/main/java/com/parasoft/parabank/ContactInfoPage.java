@@ -2,6 +2,11 @@ package com.parasoft.parabank;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 
 public class ContactInfoPage {
@@ -11,13 +16,16 @@ public class ContactInfoPage {
     private final By city = By.id("customer.address.city");
     public String newName = "Jack";
     public String newCity = "Washington";
+    WebDriverWait wait;
 
     public ContactInfoPage(WebDriver driver) {
         this.driver = driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public void changeData() throws InterruptedException {
-        Thread.sleep(1000);
+    public void changeData() {
+        WebElement element = driver.findElement(By.id("customer.firstName"));
+        wait.until(ExpectedConditions.attributeToBeNotEmpty(element, "value"));
         driver.findElement(firstName).clear();
         driver.findElement(firstName).sendKeys(newName);
         driver.findElement(city).clear();
@@ -26,10 +34,12 @@ public class ContactInfoPage {
     }
 
     public void clickUpdateInfo() {
-        driver.findElement(By.cssSelector("input.button")).submit();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input.button"))).submit();
     }
 
     public String getFirstNameNew() {
+        WebElement element = driver.findElement(firstName);
+        wait.until(ExpectedConditions.attributeToBeNotEmpty(element, "value"));
         String firstNameNew = driver.findElement(firstName).getAttribute("value");
         return firstNameNew;
     }

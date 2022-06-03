@@ -18,7 +18,7 @@ public class LoginInfoPage {
     private final By state = By.id("address.state");
     private final By zipCode = By.id("address.zipCode");
     private final By snn = By.id("ssn");
-    private final By getInfoButton = By.xpath("/html/body/div[1]/div[3]/div[2]/form/table/tbody/tr[8]/td[2]/input");
+    private final By getInfoButton = By.cssSelector("[value='Find My Login Info']");
     String CsvPath = "data/registrationData.csv";
     String[] csvCell;
     private CSVReader csvReader;
@@ -45,7 +45,7 @@ public class LoginInfoPage {
             driver.findElement(state).sendKeys(State);
             driver.findElement(zipCode).sendKeys(ZipCode);
             driver.findElement(snn).sendKeys(Snn);
-            driver.findElement(getInfoButton).click();
+            driver.findElement(getInfoButton).submit();
             break;
         }
     }

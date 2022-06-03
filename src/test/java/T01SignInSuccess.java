@@ -3,7 +3,6 @@ import com.parasoft.parabank.LandingPage;
 import com.parasoft.parabank.RegistrationPage;
 import com.parasoft.parabank.StartPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -31,10 +30,9 @@ public class T01SignInSuccess {
     }
 
     @Test(description = "Test poprawnej rejestracji")
-    public void registerTest() throws IOException, CsvValidationException, Error{
+    public void registerTest() throws IOException, CsvValidationException {
         startPage = new StartPage(driver).openPage();
         registrationPage = startPage.clickRegisterButton();
-        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/form/table")).isDisplayed());
         registrationPage = registrationPage.fillRegistrationForm();
         String userNameProvided = registrationPage.getUserNameProvided();
         landingPage = registrationPage.clickRegistrationButton();

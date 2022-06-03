@@ -2,15 +2,22 @@ package com.parasoft.parabank;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class RequestLoanPage {
 
     WebDriver driver;
+    WebDriverWait wait;
     String newAccountId;
 
     public RequestLoanPage(WebDriver driver) {
+
         this.driver = driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public void fillLoanAmount() {
@@ -29,20 +36,13 @@ public class RequestLoanPage {
     }
 
     public void clickApplyNowBtn() {
-        driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div/div/form/table/tbody/tr[4]/td[2]/input")).submit();
+        driver.findElement(By.cssSelector("input.button")).submit();
     }
 
-    public String getNewAccountId() {
-        newAccountId = driver.findElement(By.id("newAccountId")).getText();
-        return newAccountId;
-    }
-
-    public void clickAccountOverviewBtn() {
-        driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[1]/ul/li[2]/a")).click();
-    }
-
-    public void findNewAccountClick() {
-        driver.findElement(By.linkText(newAccountId)).click();
+    public String getLoanText() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("loanProviderName")));
+        String loanText = driver.findElement(By.className("title")).getText();
+        return loanText;
     }
 
 }

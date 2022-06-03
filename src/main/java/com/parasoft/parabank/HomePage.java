@@ -2,32 +2,33 @@ package com.parasoft.parabank;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HomePage {
 
     private final WebDriver driver;
+    WebDriverWait wait;
 
     public HomePage(WebDriver driver) {
+
         this.driver = driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public ContactInfoPage contactInfoClick() {
-        driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[1]/ul/li[6]/a")).click();
+        driver.findElement(By.linkText("Update Contact Info")).click();
         return new ContactInfoPage(driver);
     }
 
     public OpenAccountPage openNewAccountClick() {
-        driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[1]/ul/li[1]/a")).click();
+        driver.findElement(By.linkText("Open New Account")).click();
         return new OpenAccountPage(driver);
     }
 
-    public TransferFundsPage transferFundsClick() {
-        driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[1]/ul/li[3]/a")).click();
-        return new TransferFundsPage(driver);
-    }
-
     public RequestLoanPage requestLoanClick() {
-        driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[1]/ul/li[7]/a")).click();
+        driver.findElement(By.linkText("Request Loan")).click();
         return new RequestLoanPage(driver);
     }
 

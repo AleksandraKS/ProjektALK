@@ -1,7 +1,6 @@
 import com.parasoft.parabank.RegistrationPage;
 import com.parasoft.parabank.StartPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -22,7 +21,7 @@ public class T02SignInFail {
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().maximize();
     }
 
@@ -31,7 +30,6 @@ public class T02SignInFail {
     public void registrationFailTest() {
         startPage = new StartPage(driver).openPage();
         registrationPage = startPage.clickRegisterButton();
-        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/form/table")).isDisplayed());
         registrationPage = registrationPage.fillRegistrationFormFail();
         Assert.assertEquals(registrationPage.firstNameErrorText(), "First name is required.");
         Assert.assertEquals(registrationPage.lastNameErrorText(), "Last name is required.");

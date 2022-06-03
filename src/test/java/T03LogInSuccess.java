@@ -29,7 +29,7 @@ public class T03LogInSuccess {
     public void logInSuccessTest() throws IOException, CsvValidationException {
         startPage = new StartPage(driver).openPage();
         startPage.logInSuccess();
-        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div/div")).isDisplayed(),"Logowanie do strony nie powiodło się.");
+        Assert.assertTrue(driver.findElement(By.cssSelector("[class='ng-scope']")).isDisplayed(), "Logowanie do strony nie powiodło się.");
     }
 
     @AfterClass

@@ -12,7 +12,7 @@ public class LandingPage {
     }
 
     public String getWelcomeText() {
-        String welcomeText = driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/h1")).getText();
+        String welcomeText = driver.findElement(By.className("title")).getText();
         return welcomeText;
     }
 

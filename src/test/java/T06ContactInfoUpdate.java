@@ -3,7 +3,6 @@ import com.parasoft.parabank.ContactInfoPage;
 import com.parasoft.parabank.HomePage;
 import com.parasoft.parabank.StartPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -30,16 +29,13 @@ public class T06ContactInfoUpdate {
     }
 
     @Test(description = "Test zmiany danych kontaktowych")
-    public void updateContactInfoTest() throws IOException, CsvValidationException, InterruptedException {
+    public void updateContactInfoTest() throws IOException, CsvValidationException {
         startPage = new StartPage(driver).openPage();
         homePage = startPage.logInSuccess();
-        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div/div")).isDisplayed(),"Logowanie do strony nie powiodło się.");
         contactInfoPage = homePage.contactInfoClick();
         contactInfoPage.changeData();
         contactInfoPage.clickUpdateInfo();
-        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div/div/p")).getText().contains("Your updated address and phone number have been added to the system."), "Dane nie zostały zaktualizowane");
         homePage.contactInfoClick();
-        Thread.sleep(2000);
         Assert.assertEquals(contactInfoPage.getFirstNameNew(), contactInfoPage.newName, "Imię nie zostało poprawnie zapisane");
         Assert.assertEquals(contactInfoPage.getCityNew(), contactInfoPage.newCity, "Miasto nie zostało poprawnie zmienione");
 

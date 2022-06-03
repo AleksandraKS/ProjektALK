@@ -3,7 +3,6 @@ import com.parasoft.parabank.HomePage;
 import com.parasoft.parabank.RequestLoanPage;
 import com.parasoft.parabank.StartPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -30,21 +29,16 @@ public class T08LoanRequest {
     }
 
     @Test(description = "Test złożenia wniosku o udzielenie pożyczki")
-    public void requestLoanTest() throws IOException, CsvValidationException, InterruptedException {
+    public void requestLoanTest() throws IOException, CsvValidationException {
         startPage = new StartPage(driver).openPage();
         homePage = startPage.logInSuccess();
-        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div/div")).isDisplayed(),"Logowanie do strony nie powiodło się.");
         requestLoanPage = homePage.requestLoanClick();
         requestLoanPage.fillLoanAmount();
         requestLoanPage.fillDownPaymentAmount();
         requestLoanPage.chooseAccountForLoan();
         requestLoanPage.clickApplyNowBtn();
-        Assert.assertTrue(driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/div/div/div/p[1]")).getText().contains("Congratulations, your loan has been approved."),"Złożenie wniosku o pożyczkę zakończyło się niepowodzeniem");
-        requestLoanPage.getNewAccountId();
-        requestLoanPage.clickAccountOverviewBtn();
-        requestLoanPage.findNewAccountClick();
-        Thread.sleep(1000);
-        Assert.assertTrue(driver.findElement(By.id("accountType")).getText().contains("LOAN"),"Odnalezione konto ma błędny typ");
+        Assert.assertEquals(requestLoanPage.getLoanText(), "Loan Request Processed");
+
     }
 
     @AfterClass

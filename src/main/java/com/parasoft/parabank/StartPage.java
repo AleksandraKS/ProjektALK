@@ -4,7 +4,6 @@ import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,11 +11,11 @@ import java.io.IOException;
 public class StartPage {
 
     private final WebDriver driver;
-    private final By registerButton = By.xpath("/html/body/div[1]/div[3]/div[1]/div/p[2]/a");
-    private final By usernameField = By.xpath("/html/body/div[1]/div[3]/div[1]/div/form/div[1]/input");
-    private final By passwordField = By.xpath("/html/body/div[1]/div[3]/div[1]/div/form/div[2]/input");
-    private final By loginButton = By.xpath("/html/body/div[1]/div[3]/div[1]/div/form/div[3]/input");
-    private final By loginInfoButton = By.xpath("/html/body/div[1]/div[3]/div[1]/div/p[1]/a");
+    private final By registerButton = By.linkText("Register");
+    private final By usernameField = By.name("username");
+    private final By passwordField = By.name("password");
+    private final By loginButton = By.cssSelector("input.button");
+    private final By loginInfoButton = By.linkText("Forgot login info?");
     String CsvPath = "data/registrationData.csv";
     String[] csvCell;
     private CSVReader csvReader;
@@ -52,7 +51,7 @@ public class StartPage {
             break;
         }
 
-    return new HomePage(driver);
+        return new HomePage(driver);
     }
 
     public StartPage logInFailed() {
@@ -63,7 +62,7 @@ public class StartPage {
     }
 
     public String getLogInErrorText() {
-        String logInErrorText = driver.findElement(By.xpath("/html/body/div[1]/div[3]/div[2]/p")).getText();
+        String logInErrorText = driver.findElement(By.className("error")).getText();
         return logInErrorText;
     }
 
