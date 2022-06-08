@@ -38,6 +38,7 @@ public class OpenAccountPage {
     }
 
     public String getAccountText() {
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("newAccountId")));
         String accountText = driver.findElement(By.cssSelector("[class='title']")).getText();
         return accountText;

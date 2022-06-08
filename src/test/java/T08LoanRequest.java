@@ -37,7 +37,7 @@ public class T08LoanRequest {
         requestLoanPage.fillDownPaymentAmount();
         requestLoanPage.chooseAccountForLoan();
         requestLoanPage.clickApplyNowBtn();
-        Assert.assertEquals(requestLoanPage.getLoanText(), "Loan Request Processed");
+        Assert.assertEquals(requestLoanPage.getLoanText(), "Loan Request Processed", "Wniosek nie został prawidłowo przetworzony");
 
     }
 

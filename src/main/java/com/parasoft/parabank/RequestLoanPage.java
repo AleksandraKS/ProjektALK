@@ -40,9 +40,12 @@ public class RequestLoanPage {
     }
 
     public String getLoanText() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("loanProviderName")));
-        String loanText = driver.findElement(By.className("title")).getText();
-        return loanText;
+        String loanText = "";
+        if (driver.findElements(By.id("loanProviderName")).size()!=0) {
+            loanText = driver.findElement(By.className("title")).getText();
+        } else {
+            System.out.println("Brak możliwości złożenia wniosku o pożyczkę");
+        }
+     return loanText;
     }
-
 }
